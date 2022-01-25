@@ -30,4 +30,12 @@ public class Job {
     public void setJobName(String jobName) {
         this.jobName = jobName;
     }
+
+    public Skill getSkill() {
+        return skill;
+    }
+
+    public void setSkill(Skill skill) {
+        this.skill = skill;
+    }
 }
