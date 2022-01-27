@@ -7,6 +7,13 @@ public class Job {
     private String jobName;
     private Skill skill;
 
+    public Job(String workPlace, Resume resume, String jobName, Skill skill) {
+        this.workPlace = workPlace;
+        this.resume = resume;
+        this.jobName = jobName;
+        this.skill = skill;
+    }
+
     public String getWorkPlace() {
         return workPlace;
     }

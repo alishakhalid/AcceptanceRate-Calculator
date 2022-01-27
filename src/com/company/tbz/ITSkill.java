@@ -9,5 +9,6 @@ public class ITSkill extends Skill {
 
     public ITSkill(String name, double experienceInYears, String usageOfSkill, int skillLevel) {
         super(name, experienceInYears, usageOfSkill, skillLevel);
+        Skill skill = new ITSkill("", 3.5, "", 4);
     }
 }
