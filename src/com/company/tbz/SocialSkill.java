@@ -10,7 +10,7 @@ public class SocialSkill extends Skill{
     private boolean isTeamOriented;
     private boolean isConsidered;
 
-    public SocialSkill( boolean isExtroverted, boolean isAbleToHandleCriticism, boolean isTeamOriented, boolean isConsidered) {
+    public SocialSkill(boolean isExtroverted, boolean isAbleToHandleCriticism, boolean isTeamOriented, boolean isConsidered) {
         this.isExtroverted = isExtroverted;
         this.isAbleToHandleCriticism = isAbleToHandleCriticism;
         this.isTeamOriented = isTeamOriented;

@@ -109,8 +109,8 @@ public class IO {
             System.out.println("School Days per Week: "+college.getCollegeArrayList().get(i).getMajor().getNumberOfSchoolDays());
             System.out.println("Fees: "+college.getCollegeArrayList().get(i).getFees());
             System.out.println("Available Seats: "+college.getCollegeArrayList().get(i).getAvailableSeats());
-       //     System.out.println("Available Seats: "+college.getCollegeArrayList().get(i).getResume());
-            System.out.println("Internship in last year: "+college.getCollegeArrayList().get(i).getInternship());
+            System.out.println("Required Skill: "+college.getCollegeArrayList().get(i).getResume().getSkill().getName());
+            System.out.println("Internship in last year as: "+college.getCollegeArrayList().get(i).getInternship());
             System.out.println("---------------------------------------");
         }
     }
@@ -128,7 +128,7 @@ public class IO {
             System.out.println("Fees: "+technicalCollege.getTechnicalCollegeArrayList().get(i).getFees());
             System.out.println("Available Seats: "+technicalCollege.getTechnicalCollegeArrayList().get(i).getAvailableSeats());
             System.out.println("For Profession: "+technicalCollege.getTechnicalCollegeArrayList().get(i).getProfession());
-            System.out.println("Required SKill: "+technicalCollege.getTechnicalCollegeArrayList().get(i).getResume().getSkill());
+            System.out.println("Required Skill: "+technicalCollege.getTechnicalCollegeArrayList().get(i).getResume().getSkill().getName());
             System.out.println("---------------------------------------");
         }
     }
@@ -144,6 +144,7 @@ public class IO {
             System.out.println("Fees: "+university.getUniversities().get(i).getFees());
             System.out.println("Available Seats: "+university.getUniversities().get(i).getAvailableSeats());
             System.out.println("For Profession: "+university.getUniversities().get(i).getInsurance());
+            System.out.println("Required Skill: "+university.getUniversities().get(i).getResume().getSkill().getName());
             System.out.println("---------------------------------------");
         }
     }

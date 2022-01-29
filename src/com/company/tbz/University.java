@@ -35,4 +35,7 @@ public class University extends EducationalLocation{
         return universities;
     }
 
+    public Resume getResume() {
+        return resume;
+    }
 }
