@@ -5,9 +5,10 @@ import java.util.ArrayList;
 
 public class OfficeSkill extends Skill{
 
-    private ArrayList<String> officeSkills = new ArrayList<>();
+    private String officeSkill;
 
-    public OfficeSkill(String name, double experienceInYears, String usageOfSkill, int skillLevel) {
-        super(name, experienceInYears, usageOfSkill, skillLevel);
+    public OfficeSkill( double experienceInYears, String usageOfSkill, int skillLevel, String officeSkill ) {
+        super(experienceInYears, usageOfSkill, skillLevel);
+        this.officeSkill = officeSkill;
     }
 }

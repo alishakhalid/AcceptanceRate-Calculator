@@ -33,10 +33,8 @@ public class TechnicalCollege extends EducationalLocation{
         major.initializeMajorList();
         TechnicalCollege stc = new TechnicalCollege("TBZ", "Zuerich", major.getMajorArrayList().get(0), 15000.75, 5, "IT");
         TechnicalCollege otc = new TechnicalCollege("KV", "Zuerich", major.getMajorArrayList().get(1), 18500, 10, "Clerk");
-        TechnicalCollege rtc = new TechnicalCollege("BFFS", "Winterthur", major.getMajorArrayList().get(3), 18500, 10, "Retail Worker");
         technicalCollegeArrayList.add(stc);
         technicalCollegeArrayList.add(otc);
-        technicalCollegeArrayList.add(rtc);
     }
 
 

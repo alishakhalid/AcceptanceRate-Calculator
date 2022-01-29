@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class Job {
     private String workPlace;
+    private String jobOrientation;
     private Resume resume;
     private String jobName;
     private Skill skill;

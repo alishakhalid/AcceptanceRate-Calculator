@@ -5,10 +5,11 @@ import java.util.ArrayList;
 
 public class ITSkill extends Skill {
 
-    private ArrayList<String> programmingLanguages = new ArrayList<>();
+    private String programmingLanguages;
 
-    public ITSkill(String name, double experienceInYears, String usageOfSkill, int skillLevel) {
-        super(name, experienceInYears, usageOfSkill, skillLevel);
-        Skill skill = new ITSkill("", 3.5, "", 4);
+    public ITSkill( double experienceInYears, String usageOfSkill, int skillLevel, String programmingLanguages) {
+        super(experienceInYears, usageOfSkill, skillLevel);
+        this.programmingLanguages = programmingLanguages;
     }
+
 }

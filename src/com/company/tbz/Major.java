@@ -24,10 +24,10 @@ public class Major {
         Major computer_science = new Major("Computer Science", 4, 6 );
         Major business = new Major("Business", 3, 3);
         Major accounting = new Major("Accounting", 2, 4);
-        Major marketing = new Major("Marketing", 1, 5);
+        Major data_science = new Major("Data Science", 1, 5);
         majorArrayList.add(computer_science);
         majorArrayList.add(business);
-        majorArrayList.add(marketing);
+        majorArrayList.add(data_science);
         majorArrayList.add(accounting);
     }
 
