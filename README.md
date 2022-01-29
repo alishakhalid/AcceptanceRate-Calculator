@@ -5,11 +5,11 @@ This project calculates the acceptance rate of students who have finished their 
 To use it simply clone this Project with the following command\
 `git clone https://github.com/alishakhalid/AcceptanceRate-Calculator.git`\
 After cloning the project you can run it in your development environment such as Intellij. 
-Feel free to change the code and add your ideas in it, you can find some ideas
-[Ideas to expand program](#expansion-possibilities)
+Feel free to change the code and add your ideas in it, you can find some ideas <br />
+[Expansion possibilites](#expansion-possibilites)
 ## Design
 ### Class Diagram
 To provide an overview of our project we created a class diagram, which visualizes all Classes and their attributes. <br />
 [Class Diagram](https://github.com/alishakhalid/AcceptanceRate-Calculator)
 ### Expansion possibilites
-
+* create a GUI
