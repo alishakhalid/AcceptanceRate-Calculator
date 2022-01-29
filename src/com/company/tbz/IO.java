@@ -100,37 +100,47 @@ public class IO {
     }
 
     public void printCollege(){
-        college.initializeCollegeList();
+        college.initializeColleges();
         for (int i = 0; i < college.getCollegeArrayList().size(); i++) {
             System.out.println("Name: " +college.getCollegeArrayList().get(i).getName());
             System.out.println("Location: " +college.getCollegeArrayList().get(i).getLocation());
-            System.out.println("Majors: "+college.getCollegeArrayList().get(i).getMajor());
+            System.out.println("Major: "+college.getCollegeArrayList().get(i).getMajor().getMajorName());
+            System.out.println("Duration: "+college.getCollegeArrayList().get(i).getMajor().getMajorDurationInYears());
+            System.out.println("School Days per Week: "+college.getCollegeArrayList().get(i).getMajor().getNumberOfSchoolDays());
             System.out.println("Fees: "+college.getCollegeArrayList().get(i).getFees());
             System.out.println("Available Seats: "+college.getCollegeArrayList().get(i).getAvailableSeats());
+       //     System.out.println("Available Seats: "+college.getCollegeArrayList().get(i).getResume());
             System.out.println("Internship in last year: "+college.getCollegeArrayList().get(i).getInternship());
             System.out.println("---------------------------------------");
         }
     }
 
+
     public void printTechCollege(){
-        technicalCollege.initializeTechCollegeList();
+        technicalCollege.initializeTechnicalColleges();
         for (int i = 0; i < technicalCollege.getTechnicalCollegeArrayList().size(); i++) {
             System.out.println("Name: " +technicalCollege.getTechnicalCollegeArrayList().get(i).getName());
             System.out.println("Location: " +technicalCollege.getTechnicalCollegeArrayList().get(i).getLocation());
-            System.out.println("Majors: "+technicalCollege.getTechnicalCollegeArrayList().get(i).getMajor());
+            System.out.println("Only for: "+technicalCollege.getTechnicalCollegeArrayList().get(i).getJobOrientation());
+            System.out.println("Major: "+technicalCollege.getTechnicalCollegeArrayList().get(i).getMajor().getMajorName());
+            System.out.println("Duration: "+technicalCollege.getTechnicalCollegeArrayList().get(i).getMajor().getMajorDurationInYears());
+            System.out.println("School Days per Week: "+technicalCollege.getTechnicalCollegeArrayList().get(i).getMajor().getNumberOfSchoolDays());
             System.out.println("Fees: "+technicalCollege.getTechnicalCollegeArrayList().get(i).getFees());
             System.out.println("Available Seats: "+technicalCollege.getTechnicalCollegeArrayList().get(i).getAvailableSeats());
             System.out.println("For Profession: "+technicalCollege.getTechnicalCollegeArrayList().get(i).getProfession());
+            System.out.println("Required SKill: "+technicalCollege.getTechnicalCollegeArrayList().get(i).getResume().getSkill());
             System.out.println("---------------------------------------");
         }
     }
 
     public void printUniversities(){
-        university.initializeUniversityList();
+        university.initializeUniversities();
         for (int i = 0; i < university.getUniversities().size(); i++) {
             System.out.println("Name: " +university.getUniversities().get(i).getName());
             System.out.println("Location: " +university.getUniversities().get(i).getLocation());
-            System.out.println("Majors: "+university.getUniversities().get(i).getMajor());
+            System.out.println("Major: "+university.getUniversities().get(i).getMajor().getMajorName());
+            System.out.println("Duration: "+university.getUniversities().get(i).getMajor().getMajorDurationInYears());
+            System.out.println("School Days per Week: "+university.getUniversities().get(i).getMajor().getNumberOfSchoolDays());
             System.out.println("Fees: "+university.getUniversities().get(i).getFees());
             System.out.println("Available Seats: "+university.getUniversities().get(i).getAvailableSeats());
             System.out.println("For Profession: "+university.getUniversities().get(i).getInsurance());

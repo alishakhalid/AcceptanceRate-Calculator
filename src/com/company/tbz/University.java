@@ -7,20 +7,10 @@ public class University extends EducationalLocation{
 
     private String insurance;
     private ArrayList<University> universities = new ArrayList<>();
-    private Major major = new Major();
+    private Resume resume = new Resume();
 
-    /**
-     *
-     * fix and give more than one major to the university
-     * @param name
-     * @param location
-     * @param major
-     * @param fees
-     * @param availableSeats
-     * @param insurance
-     */
-    public University(String name, String location, Major major, double fees, int availableSeats, String insurance) {
-        super(name, location, major, fees, availableSeats);
+    public University(String name, String location, Major major, double fees, int availableSeats, Resume resume, String insurance) {
+        super(name, location, major, fees, availableSeats, resume);
         this.insurance = insurance;
     }
 
@@ -28,12 +18,13 @@ public class University extends EducationalLocation{
 
     }
 
-    public void initializeUniversityList(){
-        major.initializeMajorList();
-        University eth = new University("ETH", "Zuerich", major.getMajorArrayList().get(0), 15000.75, 5, "SWICA");
-        University uzh = new University("UZH", "Zuerich", major.getMajorArrayList().get(3), 18500, 10, "HELSANA");
+    public ArrayList<University> initializeUniversities(){
+        resume.initializeResumes();
+        University eth = new University("ETH", "Zuerich", new Major("Data Science", 4, 5), 15000.75, 5, resume.getResumes().get(7), "SWICA");
+        University uzh = new University("UZH", "Zuerich", new Major("Accounting", 2, 4), 18500, 10, resume.getResumes().get(8), "HELSANA");
         universities.add(eth);
         universities.add(uzh);
+        return universities;
     }
 
     public String getInsurance() {

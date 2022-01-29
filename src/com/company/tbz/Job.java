@@ -1,6 +1,4 @@
 package com.company.tbz;
-
-
 import java.util.ArrayList;
 
 public class Job {
@@ -8,16 +6,31 @@ public class Job {
     private String jobOrientation;
     private Resume resume;
     private String jobName;
-    private Skill skill;
-    private ArrayList<Job> jobs = new ArrayList<>();
 
-    public Job(String workPlace, Resume resume, String jobName, Skill skill) {
+    public Job(String workPlace, String jobOrientation, Resume resume, String jobName) {
         this.workPlace = workPlace;
+        this.jobOrientation = jobOrientation;
         this.resume = resume;
         this.jobName = jobName;
-        this.skill = skill;
+
     }
 
+    public ArrayList<Job> initializeJobs(ArrayList<Job> jobs) {
+        jobs.add(new Job("Noser", "IT", resume.getResumes().get(0), "Software Developer"));
+        jobs.add(new Job("Noser", "Office", resume.getResumes().get(1), "Clerk"));
+        jobs.add(new Job("UBS", "Office",  resume.getResumes().get(2), "Clerk"));
+        jobs.add(new Job("Google", "IT",  resume.getResumes().get(3), "Software Developer"));
+
+        return jobs;
+    }
+
+    public String getJobOrientation() {
+        return jobOrientation;
+    }
+
+    public void setJobOrientation(String jobOrientation) {
+        this.jobOrientation = jobOrientation;
+    }
 
     public String getWorkPlace() {
         return workPlace;
@@ -41,13 +54,5 @@ public class Job {
 
     public void setJobName(String jobName) {
         this.jobName = jobName;
-    }
-
-    public Skill getSkill() {
-        return skill;
-    }
-
-    public void setSkill(Skill skill) {
-        this.skill = skill;
     }
 }

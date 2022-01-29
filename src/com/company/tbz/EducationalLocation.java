@@ -9,20 +9,19 @@ public class EducationalLocation{
     private Major major;
     private double fees;
     private int availableSeats;
+    private Resume resume;
 
     public EducationalLocation(){}
 
-    public EducationalLocation(String name, String location, Major major, double fees, int availableSeats) {
+    public EducationalLocation(String name, String location, Major major, double fees, int availableSeats, Resume resume) {
         this.name = name;
         this.location = location;
         this.major = major;
         this.fees = fees;
         this.availableSeats = availableSeats;
+        this.resume = resume;
     }
 
-    public void getListOfStudyPlace(){
-
-    }
 
     public String getName() {
         return name;

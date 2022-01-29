@@ -5,36 +5,25 @@ import java.util.ArrayList;
 
 public class TechnicalCollege extends EducationalLocation{
 
-    private String profession;
+    private String jobOrientation;
     private ArrayList<TechnicalCollege> technicalCollegeArrayList = new ArrayList<>();
-    Major major = new Major();
+    private Resume resume = new Resume();
 
-    /**
-     * RTC - Retail technical college
-     * STC - Software technical college
-     * OTC- Office technical college
-     * @param name
-     * @param location
-     * @param major
-     * @param fees
-     * @param availableSeats
-     * @param profession
-     */
-    public TechnicalCollege(String name, String location, Major major, double fees, int availableSeats,String profession) {
-        super(name, location, major, fees, availableSeats);
-       this.profession = profession;
-    }
-
-    public TechnicalCollege(){
+    public TechnicalCollege(String name, String location, Major major, double fees, int availableSeats, Resume resume, String jobOrientation) {
+        super(name, location, major, fees, availableSeats, resume);
+        this.jobOrientation = jobOrientation;
 
     }
 
-    public void initializeTechCollegeList(){
-        major.initializeMajorList();
-        TechnicalCollege stc = new TechnicalCollege("TBZ", "Zuerich", major.getMajorArrayList().get(0), 15000.75, 5, "IT");
-        TechnicalCollege otc = new TechnicalCollege("KV", "Zuerich", major.getMajorArrayList().get(1), 18500, 10, "Clerk");
-        technicalCollegeArrayList.add(stc);
-        technicalCollegeArrayList.add(otc);
+    public TechnicalCollege(){}
+
+    public ArrayList<TechnicalCollege> initializeTechnicalColleges(){
+        resume.initializeResumes();
+        TechnicalCollege itc = new TechnicalCollege("TBZ", "Zuerich", new Major("Informatik", 4, 1), 15000.75, 5, resume.getResumes().get(9), "IT");
+        TechnicalCollege atc = new TechnicalCollege("KV", "Zuerich", new Major("Economics", 3, 2), 18500, 10, resume.getResumes().get(10), "Clerk");
+        technicalCollegeArrayList.add(itc);
+        technicalCollegeArrayList.add(atc);
+        return technicalCollegeArrayList;
     }
 
 
@@ -44,8 +33,14 @@ public class TechnicalCollege extends EducationalLocation{
 
 
     public String getProfession() {
-        return profession;
+        return jobOrientation;
     }
 
+    public String getJobOrientation() {
+        return jobOrientation;
+    }
 
+    public Resume getResume() {
+        return resume;
+    }
 }
