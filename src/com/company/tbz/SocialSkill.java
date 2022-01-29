@@ -10,7 +10,43 @@ public class SocialSkill extends Skill{
     private boolean isTeamOriented;
     private boolean isConsidered;
 
-    public SocialSkill(String name, double experienceInYears, String usageOfSkill, int skillLevel) {
+    public SocialSkill(String name, double experienceInYears, String usageOfSkill, int skillLevel, boolean isExtroverted, boolean isAbleToHandleCriticism, boolean isTeamOriented, boolean isConsidered) {
         super(name, experienceInYears, usageOfSkill, skillLevel);
+        this.isExtroverted = isExtroverted;
+        this.isAbleToHandleCriticism = isAbleToHandleCriticism;
+        this.isTeamOriented = isTeamOriented;
+        this.isConsidered = isConsidered;
+    }
+
+    public boolean isExtroverted() {
+        return isExtroverted;
+    }
+
+    public void setExtroverted(boolean extroverted) {
+        isExtroverted = extroverted;
+    }
+
+    public boolean isAbleToHandleCriticism() {
+        return isAbleToHandleCriticism;
+    }
+
+    public void setAbleToHandleCriticism(boolean ableToHandleCriticism) {
+        isAbleToHandleCriticism = ableToHandleCriticism;
+    }
+
+    public boolean isTeamOriented() {
+        return isTeamOriented;
+    }
+
+    public void setTeamOriented(boolean teamOriented) {
+        isTeamOriented = teamOriented;
+    }
+
+    public boolean isConsidered() {
+        return isConsidered;
+    }
+
+    public void setConsidered(boolean considered) {
+        isConsidered = considered;
     }
 }

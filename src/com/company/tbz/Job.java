@@ -1,11 +1,14 @@
 package com.company.tbz;
 
 
+import java.util.ArrayList;
+
 public class Job {
     private String workPlace;
     private Resume resume;
     private String jobName;
     private Skill skill;
+    private ArrayList<Job> jobs = new ArrayList<>();
 
     public Job(String workPlace, Resume resume, String jobName, Skill skill) {
         this.workPlace = workPlace;
@@ -13,6 +16,7 @@ public class Job {
         this.jobName = jobName;
         this.skill = skill;
     }
+
 
     public String getWorkPlace() {
         return workPlace;

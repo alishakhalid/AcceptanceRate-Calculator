@@ -1,6 +1,8 @@
 package com.company.tbz;
 
 
+import java.util.ArrayList;
+
 public class EducationalLocation{
     private String name;
     private String location;
@@ -8,12 +10,18 @@ public class EducationalLocation{
     private double fees;
     private int availableSeats;
 
+    public EducationalLocation(){}
+
     public EducationalLocation(String name, String location, Major major, double fees, int availableSeats) {
         this.name = name;
         this.location = location;
         this.major = major;
         this.fees = fees;
         this.availableSeats = availableSeats;
+    }
+
+    public void getListOfStudyPlace(){
+
     }
 
     public String getName() {

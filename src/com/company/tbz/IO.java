@@ -1,12 +1,16 @@
 package com.company.tbz;
 
-import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
 public class IO {
-    Validator validate = new Validator();
-    Major major = new Major();
+    private Validator validate = new Validator();
+    private College college = new College();
+    private TechnicalCollege technicalCollege = new TechnicalCollege();
+    private University university = new University();
+    private Major major = new Major();
 
     /**
      * The method run is called in the main class
@@ -23,32 +27,39 @@ public class IO {
      * the usage
      */
     public void mainMenu() {
-        Scanner input = new Scanner(System.in);
-        int answer;
-        do {
+        Scanner scanner = new Scanner(System.in);
+        int answer = 0;
+        while (answer != 4) {
             answer = 0;
-            System.out.println("                  W E L C O M E ");
+            System.out.println("\u001B[35m                  W E L C O M E ");
             System.out.println("You just finished your apprenticeship... Now what?");
+            System.out.println("This program is specifically for apprentices who have completed an apprenticeship in IT, Clerk or Retail");
             System.out.println("Press...");
-            System.out.println("[0] Quit");
+            System.out.println("\u001B[34m[0] Quit");
             System.out.println("[1] View educational places");
             System.out.println("[2] View all jobs");
             System.out.println("[3] apply to study");
-            System.out.println("[4] apply for job");
+            System.out.println("[4] apply for job\u001B[0m");
             System.out.print("> ");
-            answer = input.nextInt();
-            switch (answer) {
-                case 1 -> educationMenu();
-                case 2 -> professionMenu();
-                case 3 -> System.out.println("apply to study");
-                case 4 -> System.out.println("apply for job");
-                case 0 -> {
-                    System.out.println("Thank you, Good Bye :D");
-                    System.exit(0);
+            try{
+                answer = Integer.parseInt(scanner.nextLine());
+                switch (answer) {
+                    case 0 -> {
+                        System.out.println("Thank you, Good bye :D");
+                        System.exit(0);
+                    }
+                    case 1 -> educationMenu();
+                    case 2 ->  professionMenu();
+                    case 3 -> System.out.println("apply study");
+                    case 4 -> System.out.println("apply job");
+                    default -> System.out.println("\u001B[31mInvalid answer\u001B[0m");
+
                 }
-                default -> System.out.println("\u001B[31mNot valid answer\u001B[0m");
+            }catch (NumberFormatException e){
+                System.out.println("\u001B[31mOnly numbers allowed!\u001B[0m");
+                mainMenu();
             }
-        } while (answer != 4);
+        }
     }
 
     /**
@@ -59,21 +70,71 @@ public class IO {
     public void educationMenu() {
         Scanner input = new Scanner(System.in);
         int answer = 0;
+
         while (answer != 4) {
             System.out.println("|--------------------------------------------------------------|");
-            System.out.println("| [1] view all colleges     | [2]  view all technical colleges |");
+            System.out.println("| [1] View all colleges     | [2] View all technical colleges |");
             System.out.println("|--------------------------------------------------------------|");
-            System.out.println("| [3] view all universities | [4] Go back to previous menu     |");
+            System.out.println("| [3] View all universities | [4] Go back to previous menu     |");
             System.out.println("|--------------------------------------------------------------|");
             System.out.print("> ");
-            answer = input.nextInt();
-            switch (answer) {
-                case 1 -> System.out.println("view colleges");
-                case 2 -> System.out.println("view all technical college");
-                case 3 -> System.out.println("view universities");
-                case 4 -> System.out.println("Going back");
-                default -> System.out.println("\u001B[31mNot valid answer\u001B[0m");
-            }
+
+                answer = input.nextInt();
+                switch (answer) {
+                    case 1 -> printCollege();
+                    case 2 -> printTechCollege();
+                    case 3 -> printUniversities();
+                    case 4 -> System.out.println("Going back");
+                    default -> System.out.println("\u001B[31mNot valid answer\u001B[0m");
+                }
+        }
+    }
+
+    public void printMajors(){
+        major.initializeMajorList();
+        for (int i = 0; i < major.getMajorArrayList().size(); i++){
+            System.out.println("Major: "+major.getMajorArrayList().get(i).getMajorName());
+            System.out.println("Duration: "+major.getMajorArrayList().get(i).getMajorDurationInYears());
+            System.out.println("School Days per week: "+major.getMajorArrayList().get(i).getNumberOfSchoolDays());
+        }
+    }
+
+    public void printCollege(){
+        college.initializeCollegeList();
+        for (int i = 0; i < college.getCollegeArrayList().size(); i++) {
+            System.out.println("Name: " +college.getCollegeArrayList().get(i).getName());
+            System.out.println("Location: " +college.getCollegeArrayList().get(i).getLocation());
+            System.out.println("Majors: "+college.getCollegeArrayList().get(i).getMajor());
+            System.out.println("Fees: "+college.getCollegeArrayList().get(i).getFees());
+            System.out.println("Available Seats: "+college.getCollegeArrayList().get(i).getAvailableSeats());
+            System.out.println("Internship in last year: "+college.getCollegeArrayList().get(i).getInternship());
+            System.out.println("---------------------------------------");
+        }
+    }
+
+    public void printTechCollege(){
+        technicalCollege.initializeTechCollegeList();
+        for (int i = 0; i < technicalCollege.getTechnicalCollegeArrayList().size(); i++) {
+            System.out.println("Name: " +technicalCollege.getTechnicalCollegeArrayList().get(i).getName());
+            System.out.println("Location: " +technicalCollege.getTechnicalCollegeArrayList().get(i).getLocation());
+            System.out.println("Majors: "+technicalCollege.getTechnicalCollegeArrayList().get(i).getMajor());
+            System.out.println("Fees: "+technicalCollege.getTechnicalCollegeArrayList().get(i).getFees());
+            System.out.println("Available Seats: "+technicalCollege.getTechnicalCollegeArrayList().get(i).getAvailableSeats());
+            System.out.println("For Profession: "+technicalCollege.getTechnicalCollegeArrayList().get(i).getProfession());
+            System.out.println("---------------------------------------");
+        }
+    }
+
+    public void printUniversities(){
+        university.initializeUniversityList();
+        for (int i = 0; i < university.getUniversities().size(); i++) {
+            System.out.println("Name: " +university.getUniversities().get(i).getName());
+            System.out.println("Location: " +university.getUniversities().get(i).getLocation());
+            System.out.println("Majors: "+university.getUniversities().get(i).getMajor());
+            System.out.println("Fees: "+university.getUniversities().get(i).getFees());
+            System.out.println("Available Seats: "+university.getUniversities().get(i).getAvailableSeats());
+            System.out.println("For Profession: "+university.getUniversities().get(i).getInsurance());
+            System.out.println("---------------------------------------");
         }
     }
 
@@ -172,5 +233,6 @@ public class IO {
             }
         } while (answer != 4);
     }
+
 
 }

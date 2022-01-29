@@ -3,20 +3,36 @@ package com.company.tbz;
 
 import java.util.ArrayList;
 
-public class College extends EducationalLocation{
+public class College extends EducationalLocation {
     private String internship;
-    private ArrayList<College> colleges = new ArrayList<>();
-    private Major major;
+    private ArrayList<College> collegeArrayList = new ArrayList<>();
+    private Major major = new Major();
+
+    public College(){
+
+    }
 
     public College(String name, String location, Major major, double fees, int availableSeats, String internship) {
         super(name, location, major, fees, availableSeats);
-        College zhaw = new College("ZHAW", "Zuerich", major.getMajors().get(0), 5000, 20, "Software Developer");
-        College hwz = new College("HWZ", "Zuerich", major.getMajors().get(1), 6500.50, 12, "Retail Manager");
-        colleges.add(zhaw);
-        colleges.add(hwz);
+        this.internship = internship;
     }
 
-    public ArrayList<College> getColleges() {
-        return colleges;
+    public void initializeCollegeList(){
+        major.initializeMajorList();
+        College zhaw = new College("ZHAW", "Zuerich", major.getMajorArrayList().get(0), 5000, 20, "Software Developer");
+        College hwz = new College("HWZ", "Zuerich", major.getMajorArrayList().get(1), 6500.50, 12, "Retail Manager");
+        collegeArrayList.add(zhaw);
+        collegeArrayList.add(hwz);
     }
+
+    public ArrayList<College> getCollegeArrayList() {
+        return collegeArrayList;
+    }
+
+
+    public String getInternship() {
+        return internship;
+    }
+
+
 }

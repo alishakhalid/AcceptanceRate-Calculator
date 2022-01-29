@@ -1,9 +1,5 @@
 package com.company.tbz;
 
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -43,7 +39,7 @@ public class Validator {
      *
      * @return input
      */
-    public double validateNumberInput() {
+    public double validateGradeInput() {
         Scanner scan = new Scanner(System.in);
         String decimalPattern = "([0-9]*)\\.([0-9]*)";
         String input = scan.nextLine();
