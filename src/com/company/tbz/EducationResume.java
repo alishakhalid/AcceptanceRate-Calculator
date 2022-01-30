@@ -6,8 +6,8 @@ import java.util.ArrayList;
 public class EducationResume extends Resume{
 
     private int minAge;
-
     private ArrayList<Resume> userResumeList = new ArrayList<>();
+
 
     public EducationResume(){
 

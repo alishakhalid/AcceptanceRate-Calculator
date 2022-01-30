@@ -1,6 +1,5 @@
 package com.company.tbz;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -11,8 +10,8 @@ public class IO {
     private University university = new University();
     private Major major = new Major();
     private Resume resume = new Resume();
-    private EducationResume educationResume = new EducationResume();
     private Skill skill = new Skill();
+    private EducationResume userEducationResume = new EducationResume();
 
     /**
      * The method run is called in the main class
@@ -75,7 +74,7 @@ public class IO {
 
         while (answer != 4) {
             System.out.println("|--------------------------------------------------------------|");
-            System.out.println("| [1] View all colleges     | [2] View all technical colleges |");
+            System.out.println("| [1] View all colleges     | [2] View all technical colleges  |");
             System.out.println("|--------------------------------------------------------------|");
             System.out.println("| [3] View all universities | [4] Go back to previous menu     |");
             System.out.println("|--------------------------------------------------------------|");
@@ -112,7 +111,6 @@ public class IO {
             System.out.println("School Days per Week: "+college.getCollegeArrayList().get(i).getMajor().getNumberOfSchoolDays());
             System.out.println("Fees: "+college.getCollegeArrayList().get(i).getFees());
             System.out.println("Available Seats: "+college.getCollegeArrayList().get(i).getAvailableSeats());
-            System.out.println("Required Skill: "+college.getCollegeArrayList().get(i).getResume().getSkill().getName());
             System.out.println("Internship in last year as: "+college.getCollegeArrayList().get(i).getInternship());
             System.out.println("---------------------------------------");
         }
@@ -132,7 +130,6 @@ public class IO {
             System.out.println("Fees: "+technicalCollege.getTechnicalCollegeArrayList().get(i).getFees());
             System.out.println("Available Seats: "+technicalCollege.getTechnicalCollegeArrayList().get(i).getAvailableSeats());
             System.out.println("For Profession: "+technicalCollege.getTechnicalCollegeArrayList().get(i).getProfession());
-            System.out.println("Required Skill: "+technicalCollege.getTechnicalCollegeArrayList().get(i).getResume().getSkill().getName());
             System.out.println("---------------------------------------");
         }
     }
@@ -141,6 +138,7 @@ public class IO {
         Scanner input = new Scanner(System.in);
         int answer = 0;
         System.out.println("Your choice is to go study.");
+        do{
         System.out.println("Please choose in the following if you'd like to go in a\n" +
                 "[0] College | [1] Technical College | [2] University");
         System.out.print("> ");
@@ -149,35 +147,35 @@ public class IO {
                 case 0 -> {
                     printCollege();
                     System.out.println("In which College would you like to study (choose with index)");
-                    System.out.print("> ");
-                    answer = input.nextInt();
+
                 }
                 case 1 -> {
                     printTechCollege();
                     System.out.println("In which Technical College would you like to study (choose with index)");
-                    System.out.print("> ");
-                    answer = input.nextInt();
                 }
                 case 2 -> {
                     printUniversities();
                     System.out.println("In which University would you like to study (choose with index)");
-                    System.out.print("> ");
-                    answer = input.nextInt();
                 }
-                default -> System.out.println("Not valid answer");
+                default -> System.out.println("\u001B[31mNot valid answer\u001B[0m");
             }
-        questionForResume();
+        }while (answer < 0 ||answer > 2);
+            System.out.print("> ");
+            answer = input.nextInt();
+        questionForEducationResume();
+        System.exit(0);
     }
 
-    public void questionForResume(){
+
+
+    public void questionForEducationResume(){
         Scanner input = new Scanner(System.in);
-        Resume resume = new Resume();
         System.out.println("How old are you? ");
         System.out.print("> ");
         int age = input.nextInt();
         System.out.println("What is your grade point average of your Report card? ");
         System.out.print("> ");
-        double gradeAverage = input.nextDouble();
+        double gradeAverage = validate.validateGradeInput();
         System.out.print("What is your Skill? \n");
         printSkill();
         System.out.print("> ");
@@ -195,22 +193,23 @@ public class IO {
                 "true | false \n");
         System.out.print("> ");
         boolean hasBMS = input.nextBoolean();
-        educationResume.createEducationResumeForUserToFillOut(resume.getMinAge(),
-                resume.getAverageGrade(), educationResume.getUserSkill(), resume.getStrength(), resume.getWeakness(), resume.isHasBMSDiploma());
-
-        System.out.println("Your answers: ");
-        System.out.println(resume.getMinAge());
+        userEducationResume.createEducationResumeForUserToFillOut(age,
+                gradeAverage, userSkill, userStrength, userWeakness, hasBMS);
+        printUserEducationResume();
+        System.out.println("Calculating Acceptance Rate...");
+        System.out.println("Here you go");
     }
+
 
     public void printUserEducationResume(){
         System.out.println("Your answers: ");
-        for (int i = 0; i < educationResume.getUserResumeList().size(); i++){
-            System.out.println("["+i+"] "+"Age: "+educationResume.getUserResumeList().get(i).getMinAge());
-            System.out.println("Average Grade: "+educationResume.getUserResumeList().get(i).getAverageGrade());
-            System.out.println("Your skill: "+educationResume.getUserResumeList().get(i).getUserSkill());
-            System.out.println("Your best strength: "+educationResume.getUserResumeList().get(i).getStrength());
-            System.out.println("Your biggest weakness: "+educationResume.getUserResumeList().get(i).getWeakness());
-            System.out.println("Has BMS Diploma: "+educationResume.getUserResumeList().get(i).isHasBMSDiploma());
+        for (int i = 0; i < userEducationResume.getUserResumeList().size(); i++){
+            System.out.println("["+i+"] "+"Age: "+userEducationResume.getUserResumeList().get(i).getMinAge());
+            System.out.println("Average Grade: "+userEducationResume.getUserResumeList().get(i).getAverageGrade());
+            System.out.println("Your skill: "+userEducationResume.getUserResumeList().get(i).getUserSkill());
+            System.out.println("Your best strength: "+userEducationResume.getUserResumeList().get(i).getStrength());
+            System.out.println("Your biggest weakness: "+userEducationResume.getUserResumeList().get(i).getWeakness());
+            System.out.println("Has BMS Diploma: "+userEducationResume.getUserResumeList().get(i).isHasBMSDiploma());
 
         }
     }
@@ -256,7 +255,6 @@ public class IO {
             System.out.println("Fees: "+university.getUniversities().get(i).getFees());
             System.out.println("Available Seats: "+university.getUniversities().get(i).getAvailableSeats());
             System.out.println("For Profession: "+university.getUniversities().get(i).getInsurance());
-            System.out.println("Required Skill: "+university.getUniversities().get(i).getResume().getName());
             System.out.println("---------------------------------------");
         }
     }
