@@ -3,7 +3,6 @@ package com.company.tbz;
 import java.util.ArrayList;
 
 public class Resume {
-    private int minAge;
     private String userSkill;
     private String name;
     private double averageGrade;
@@ -15,9 +14,7 @@ public class Resume {
     private ArrayList<String> weaknesses = new ArrayList<>();
     private ArrayList<Resume> resumes = new ArrayList<>();
 
-    public Resume(){
-
-    }
+    public Resume(){ }
 
     public Resume(String name, double averageGrade, Skill skill, String strength ,String weakness,  boolean hasBMSDiploma) {
         this.name = name;
@@ -75,10 +72,6 @@ public class Resume {
         return averageGrade;
     }
 
-    public Skill getSkill() {
-        return skill;
-    }
-
     public String getStrength() {
         return strength;
     }
@@ -107,14 +100,6 @@ public class Resume {
         return name;
     }
 
-    public int getMinAge() {
-        return minAge;
-    }
-
-    public void setMinAge(int minAge) {
-        this.minAge = minAge;
-    }
-
     public String getUserSkill() {
         return userSkill;
     }
@@ -125,10 +110,6 @@ public class Resume {
 
     public void setAverageGrade(double averageGrade) {
         this.averageGrade = averageGrade;
-    }
-
-    public void setSkill(Skill skill) {
-        this.skill = skill;
     }
 
     public void setStrength(String strength) {

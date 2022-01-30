@@ -1,9 +1,6 @@
 package com.company.tbz;
+
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Job {
     private String workPlace;
@@ -17,25 +14,36 @@ public class Job {
         this.jobOrientation = jobOrientation;
         this.resume = resume;
         this.jobName = jobName;
-
     }
-    public Job(){}
+
+    public Job() {}
 
     public void initializeJobs() {
         resume.initializeResumes();
         jobs.add(new Job("Noser", "IT", resume.getResumes().get(0), "Software Developer"));
-        jobs.add(new Job("Noser", "Office", resume.getResumes().get(1), "Clerk"));
-        jobs.add(new Job("UBS", "Office",  resume.getResumes().get(2), "Clerk"));
-        jobs.add(new Job("Google", "IT",  resume.getResumes().get(3), "Software Developer"));
+        jobs.add(new Job("Noser", "Office", resume.getResumes().get(1), "Administration Clerk"));
+        jobs.add(new Job("UBS", "Office", resume.getResumes().get(2), "Bank Clerk"));
+        jobs.add(new Job("Google", "IT", resume.getResumes().get(3), "System Developer"));
     }
 
-    public void getITJobs(){
-        System.out.println("hello job");
+    public void getITJobs() {
         initializeJobs();
-
+        String jobOrientation = "IT";
+        for (int i = 0; i < jobs.size(); i++) {
+            if (jobs.get(i).getJobOrientation().equals(jobOrientation)) {
+                System.out.println("Workplace: "+ jobs.get(i).workPlace + " as " + jobs.get(i).jobName + " ");
+            }
+        }
     }
-    public Stream<Job> getClerkJobs(){
-        return jobs.stream().filter(job -> job.jobOrientation.contains("Office"));
+
+    public void getClerkJobs() {
+        initializeJobs();
+        String jobOrientation = "Office";
+        for (int i = 0; i < jobs.size(); i++) {
+            if (jobs.get(i).getJobOrientation().equals(jobOrientation)) {
+                System.out.println("Workplace: "+ jobs.get(i).workPlace + " as " + jobs.get(i).jobName + " ");
+            }
+        }
     }
 
     public String getJobOrientation() {

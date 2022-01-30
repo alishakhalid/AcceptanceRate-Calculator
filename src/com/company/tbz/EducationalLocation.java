@@ -14,7 +14,6 @@ public class EducationalLocation{
     private int availableSeats;
     private Resume resume;
 
-
     /**
      * Common attributes in the constructor which
      * the child classes will be using
@@ -35,11 +34,6 @@ public class EducationalLocation{
     }
 
     public EducationalLocation(){}
-
-    /**
-     * Getter and Setters to access the values
-     * of the attributes
-     */
 
     public String getName() {
         return name;

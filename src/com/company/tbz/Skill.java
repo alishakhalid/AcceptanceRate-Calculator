@@ -9,8 +9,7 @@ public class Skill {
     private int skillLevel;
     private  ArrayList<Skill> skills = new ArrayList<>();
 
-    public Skill() {
-    }
+    public Skill() {}
 
     public Skill(String name, double experienceInYears, String usageOfSkill, int skillLevel) {
         this.name = name;

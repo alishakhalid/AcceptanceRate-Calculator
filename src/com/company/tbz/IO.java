@@ -13,6 +13,7 @@ public class IO {
     private Resume resume = new Resume();
     private Skill skill = new Skill();
     private EducationResume userEducationResume = new EducationResume();
+    private JobResume userJobResume = new JobResume();
     private Job job = new Job();
 
     /**
@@ -58,7 +59,7 @@ public class IO {
                 case 1 -> educationMenu();
                 case 2 -> professionMenu();
                 case 3 -> applicationToStudy();
-                case 4 -> System.out.println("apply job");
+                case 4 -> applicationToWork();
                 default -> {
                     System.out.println("\u001B[31mInvalid answer");
                     System.out.println("Try again...\u001B[0m");
@@ -98,7 +99,6 @@ public class IO {
                     System.out.println("\u001B[31mInvalid answer, input must be 1, 2 or 3");
                     System.out.println("In case you would like to go back, press 4\u001B[0m");
                 }
-
             }
         }
     }
@@ -140,6 +140,47 @@ public class IO {
         System.exit(0);
     }
 
+    /**
+     * This is a menu which gets called in the
+     * main menu when the user decides to apply
+     * to work. This menu will guide him/her through
+     * and ask him/her where he/she would like to
+     * work. After this another method is called
+     * asking questions to fill out their resume
+     */
+    public void applicationToWork() {
+        Scanner input = new Scanner(System.in);
+        int answer = 0;
+
+        while (answer!= 2) {
+            System.out.println("Your choice is to work.");
+            System.out.println("Please choose in which field you want to work \n" +
+                    "[0] IT | [1] Office | [2] Move back");
+            System.out.print("> ");
+            try {
+                answer = Integer.parseInt(input.nextLine());
+            } catch (InputMismatchException | NumberFormatException e) {
+                System.out.println("\u001B[31mInvalid answer\u001B[0m");
+                System.out.print("> ");
+                answer = Integer.parseInt(input.nextLine());
+            }
+            switch (answer) {
+                case 0 -> {
+                    job.getITJobs();
+                    System.out.println("For which IT-job do want to apply for? (choose with index)");
+                }
+                case 1 -> {
+                    job.getClerkJobs();
+                    System.out.println("For which Clerk-job do want to apply for? (choose with index)");
+                }
+                default -> System.out.println("\u001B[31mNot valid answer\u001B[0m");
+            }
+            System.out.print("> ");
+            answer = Integer.parseInt(input.nextLine());
+            questionForJobResume();
+            System.exit(0);
+        }
+    }
 
     /**
      * This method gets called in applicationToStudy.
@@ -149,6 +190,7 @@ public class IO {
      */
     public void questionForEducationResume() {
         Scanner input = new Scanner(System.in);
+
         System.out.println("How old are you? ");
         System.out.print("> ");
         int age = input.nextInt();
@@ -179,6 +221,43 @@ public class IO {
     }
 
     /**
+     * This method gets called in applicationToStudy.
+     * It asks the user a few question to fill
+     * out his/her resume which we will be comparing
+     * later on with it's educational location
+     */
+    public void questionForJobResume() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("How many kilometres far do you live from this job? ");
+        System.out.print("> ");
+        int domicileDistance = input.nextInt();
+        System.out.println("What is your grade point average of your Report card? ");
+        System.out.print("> ");
+        double gradeAverage = validate.validateGradeInput();
+        System.out.print("What is your Skill? \n");
+        printSkill();
+        System.out.print("> ");
+        String userSkill = validate.validateStringInput();
+        System.out.print("What is your biggest strength (choose 1) \n");
+        printStrengths();
+        System.out.print("> ");
+        String userStrength = validate.validateStringInput();
+        System.out.print("What is your biggest weakness (choose 1) \n");
+        printWeaknesses();
+        System.out.print("> ");
+        String userWeakness = validate.validateStringInput();
+        System.out.print("Do you have a BMS diploma? \n" +
+                "true | false \n");
+        System.out.print("> ");
+        boolean hasBMS = input.nextBoolean();
+        userJobResume.createJobResumeForUserToFillOut(domicileDistance,
+                gradeAverage, userSkill.toLowerCase(), userStrength.toLowerCase(), userWeakness.toLowerCase(), hasBMS);
+        printUserJobResume();
+        System.out.println("Calculating Acceptance Rate...");
+        System.out.println("Here you go");
+    }
+
+    /**
      * This method prints the resume information's
      * which the user filled to show him/her
      * it's answers
@@ -195,15 +274,21 @@ public class IO {
 
         }
     }
-
     /**
-     * Method prints all hard coded resumes
+     * This method prints the resume information's
+     * which the user filled to show him/her
+     * it's answers
      */
-    public void printResume() {
-        Resume resume = new Resume();
-        resume.initializeResumes();
-        for (int i = 0; i < resume.getResumes().size(); i++) {
-            System.out.println(resume.getResumes().get(i).getSkill().getName());
+    public void printUserJobResume() {
+        System.out.println("Your answers: ");
+        for (int i = 0; i < userJobResume.getUserResumeList().size(); i++) {
+            System.out.println("Domicile Distance: " + userJobResume.getUserResumeList().get(i).getMaxDomicileDistance());
+            System.out.println("Average Grade: " + userJobResume.getUserResumeList().get(i).getAverageGrade());
+            System.out.println("Your skill: " + userJobResume.getUserResumeList().get(i).getUserSkill());
+            System.out.println("Your best strength: " + userJobResume.getUserResumeList().get(i).getStrength());
+            System.out.println("Your biggest weakness: " + userJobResume.getUserResumeList().get(i).getWeakness());
+            System.out.println("Has BMS Diploma: " + userJobResume.getUserResumeList().get(i).isHasBMSDiploma());
+
         }
     }
 
@@ -350,23 +435,31 @@ public class IO {
      */
     public void professionMenu() {
         Scanner sc = new Scanner(System.in);
-        int answer;
-        do {
-            answer = 0;
+        int answer = 0;
+
+        while (answer != 3) {
             System.out.println("|-----------------------------------------------------|");
             System.out.println("| [1] view all IT jobs      | [2] view all Clerk Jobs |");
             System.out.println("|---------------------------------------------------- |");
             System.out.println("| [3] go back to main menu  |                         |");
             System.out.println("|-----------------------------------------------------|");
             System.out.print("> ");
-            answer = Integer.parseInt(sc.nextLine());
+            try {
+                answer = Integer.parseInt(sc.nextLine());
+            } catch (InputMismatchException | NumberFormatException e) {
+                System.out.println("\u001B[31mInvalid answer\u001B[0m");
+                System.out.print("> ");
+                answer = Integer.parseInt(sc.nextLine());
+            }
             switch (answer) {
                 case 1 -> job.getITJobs();
                 case 2 -> job.getClerkJobs();
                 case 3 -> System.out.println("Go back ");
-                default -> System.err.println("\u001B[31mInvalid answer\u001B[0m");
+                default -> {
+                    System.out.println("\u001B[31mInvalid answer\u001B[0m");
+                }
             }
-        } while (answer != 4);
+        }
     }
 
 

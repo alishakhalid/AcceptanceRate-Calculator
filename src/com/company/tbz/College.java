@@ -8,9 +8,7 @@ public class College extends EducationalLocation {
     private ArrayList<College> collegeArrayList = new ArrayList<>();
     private Resume resume = new Resume();
 
-    public College(){
-
-    }
+    public College(){ }
 
     public College(String name, String location, Major major, double fees, int availableSeats, Resume resume, String internship) {
         super(name, location, major, fees, availableSeats, resume);
