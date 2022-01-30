@@ -4,13 +4,14 @@ package com.company.tbz;
 import java.util.ArrayList;
 
 public class SocialSkill extends Skill{
-
+    private String name;
     private boolean isExtroverted;
     private boolean isAbleToHandleCriticism;
     private boolean isTeamOriented;
     private boolean isConsidered;
 
-    public SocialSkill(boolean isExtroverted, boolean isAbleToHandleCriticism, boolean isTeamOriented, boolean isConsidered) {
+    public SocialSkill(String name, boolean isExtroverted, boolean isAbleToHandleCriticism, boolean isTeamOriented, boolean isConsidered) {
+        this.name = name;
         this.isExtroverted = isExtroverted;
         this.isAbleToHandleCriticism = isAbleToHandleCriticism;
         this.isTeamOriented = isTeamOriented;
@@ -47,5 +48,10 @@ public class SocialSkill extends Skill{
 
     public void setConsidered(boolean considered) {
         isConsidered = considered;
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
 }

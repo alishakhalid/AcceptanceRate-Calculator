@@ -3,20 +3,24 @@ package com.company.tbz;
 import java.util.ArrayList;
 
 public class Resume {
+    private int minAge;
+    private int userSkill;
+    private String name;
     private double averageGrade;
     private Skill skill = new Skill();
     private String strength;
     private String weakness;
     private boolean hasBMSDiploma;
+    private ArrayList<String> strengths = new ArrayList<>();
+    private ArrayList<String> weaknesses = new ArrayList<>();
     private ArrayList<Resume> resumes = new ArrayList<>();
-    private ArrayList<String> strengths;
-    private ArrayList<String> weaknesses;
 
     public Resume(){
 
     }
 
-    public Resume(double averageGrade, Skill skill, String strength ,String weakness,  boolean hasBMSDiploma) {
+    public Resume(String name, double averageGrade, Skill skill, String strength ,String weakness,  boolean hasBMSDiploma) {
+        this.name = name;
         this.averageGrade = averageGrade;
         this.skill = skill;
         this.strength = strength;
@@ -40,19 +44,19 @@ public class Resume {
         weaknesses.add("disorganized");
     }
 
-    public void initializeResumes(){
+    public ArrayList<Resume> initializeResumes(){
         skill.initializeSkills();
-        Resume noserIT = new JobResume( 40,5.5, skill.getSkills().get(0), "dedicated", "detail-oriented", false );
-        Resume noserClerk = new JobResume( 15,5.5, skill.getSkills().get(3), "fair", "impatient", false );
-        Resume ubsClerk = new JobResume( 20, 5.5, skill.getSkills().get(4), "dedicated", "detail-oriented", false );
-        Resume googleIT = new JobResume( 50,5.5, skill.getSkills().get(1), "caring", "insecure", true);
-        Resume oracleIT = new JobResume( 150,5.5, skill.getSkills().get(2), "dedicated", "overconfident", true);
-        Resume zhaw = new EducationResume(19, 5.2, skill.getSkills().get(5), "self-controlled", "overconfident", true );
-        Resume hwz = new EducationResume(19,5, skill.getSkills().get(6), "fair", "insecure", true );
-        Resume eth = new EducationResume(21, 5.3, skill.getSkills().get(5), "self-controlled", "overconfident", true );
-        Resume uzh = new EducationResume(21,5, skill.getSkills().get(7), "fair", "insecure", true );
-        Resume itc = new EducationResume(18,5, skill.getSkills().get(6), "fair", "insecure", false );
-        Resume atc = new EducationResume(18,5, skill.getSkills().get(8), "fair", "insecure", false );
+        Resume noserIT = new JobResume( 40,"noserIT",5.5, skill.getSkills().get(0), "dedicated", "detail-oriented", false);
+        Resume noserClerk = new JobResume( 15,"noserClerk",5.5, skill.getSkills().get(3), "fair", "impatient", false );
+        Resume ubsClerk = new JobResume( 20,"ubsClerk" ,5.5, skill.getSkills().get(4), "dedicated", "detail-oriented", false );
+        Resume googleIT = new JobResume( 50,"googleIT",5.5, skill.getSkills().get(1), "caring", "insecure", true);
+        Resume oracleIT = new JobResume( 150,"oracleIT",5.5, skill.getSkills().get(2), "dedicated", "overconfident", true);
+        Resume zhaw = new EducationResume(19,"zhaw", 5.2, skill.getSkills().get(5), "self-controlled", "overconfident", true );
+        Resume hwz = new EducationResume(19,"hwz",5, skill.getSkills().get(6), "fair", "insecure", true );
+        Resume eth = new EducationResume(21, "eth",5.3, skill.getSkills().get(5), "self-controlled", "overconfident", true );
+        Resume uzh = new EducationResume(21,"uzh",5, skill.getSkills().get(7), "fair", "insecure", true );
+        Resume itc = new EducationResume(18,"itc",5, skill.getSkills().get(6), "fair", "insecure", false );
+        Resume atc = new EducationResume(18,"atc",5, skill.getSkills().get(8), "fair", "insecure", false );
         resumes.add(noserIT);
         resumes.add(noserClerk);
         resumes.add(ubsClerk);
@@ -64,9 +68,6 @@ public class Resume {
         resumes.add(uzh);
         resumes.add(itc);
         resumes.add(atc);
-    }
-
-    public ArrayList<Resume> getResumes() {
         return resumes;
     }
 
@@ -96,5 +97,53 @@ public class Resume {
 
     public ArrayList<String> getWeaknesses() {
         return weaknesses;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getMinAge() {
+        return minAge;
+    }
+
+    public void setMinAge(int minAge) {
+        this.minAge = minAge;
+    }
+
+    public int getUserSkill() {
+        return userSkill;
+    }
+
+    public void setUserSkill(int userSkill) {
+        this.userSkill = userSkill;
+    }
+
+    public void setAverageGrade(double averageGrade) {
+        this.averageGrade = averageGrade;
+    }
+
+    public void setSkill(Skill skill) {
+        this.skill = skill;
+    }
+
+    public void setStrength(String strength) {
+        this.strength = strength;
+    }
+
+    public void setWeakness(String weakness) {
+        this.weakness = weakness;
+    }
+
+    public void setHasBMSDiploma(boolean hasBMSDiploma) {
+        this.hasBMSDiploma = hasBMSDiploma;
+    }
+
+    public ArrayList<Resume> getResumes() {
+        return resumes;
     }
 }
