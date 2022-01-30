@@ -18,7 +18,7 @@ public class EducationResume extends Resume{
         this.minAge = minAge;
     }
 
-    public void createEducationResumeForUserToFillOut(int age, double averageGrade, int userInputSkill, String userStrength, String userWeakness, boolean hasBMS){
+    public void createEducationResumeForUserToFillOut(int age, double averageGrade, String userInputSkill, String userStrength, String userWeakness, boolean hasBMS){
         Resume userEducationResume = new EducationResume();
         userEducationResume.setMinAge(age);
         userEducationResume.setAverageGrade(averageGrade);

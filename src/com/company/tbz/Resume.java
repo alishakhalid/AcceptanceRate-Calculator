@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Resume {
     private int minAge;
-    private int userSkill;
+    private String userSkill;
     private String name;
     private double averageGrade;
     private Skill skill = new Skill();
@@ -115,11 +115,11 @@ public class Resume {
         this.minAge = minAge;
     }
 
-    public int getUserSkill() {
+    public String getUserSkill() {
         return userSkill;
     }
 
-    public void setUserSkill(int userSkill) {
+    public void setUserSkill(String userSkill) {
         this.userSkill = userSkill;
     }
 

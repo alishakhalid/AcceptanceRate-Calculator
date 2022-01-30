@@ -1,11 +1,16 @@
 package com.company.tbz;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Job {
     private String workPlace;
     private String jobOrientation;
-    private Resume resume;
+    private Resume resume = new Resume();
     private String jobName;
+    ArrayList<Job> jobs = new ArrayList<>();
 
     public Job(String workPlace, String jobOrientation, Resume resume, String jobName) {
         this.workPlace = workPlace;
@@ -14,14 +19,23 @@ public class Job {
         this.jobName = jobName;
 
     }
+    public Job(){}
 
-    public ArrayList<Job> initializeJobs(ArrayList<Job> jobs) {
+    public void initializeJobs() {
+        resume.initializeResumes();
         jobs.add(new Job("Noser", "IT", resume.getResumes().get(0), "Software Developer"));
         jobs.add(new Job("Noser", "Office", resume.getResumes().get(1), "Clerk"));
         jobs.add(new Job("UBS", "Office",  resume.getResumes().get(2), "Clerk"));
         jobs.add(new Job("Google", "IT",  resume.getResumes().get(3), "Software Developer"));
+    }
 
-        return jobs;
+    public void getITJobs(){
+        System.out.println("hello job");
+        initializeJobs();
+
+    }
+    public Stream<Job> getClerkJobs(){
+        return jobs.stream().filter(job -> job.jobOrientation.contains("Office"));
     }
 
     public String getJobOrientation() {

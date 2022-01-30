@@ -1,8 +1,11 @@
 package com.company.tbz;
 
 
-import java.util.ArrayList;
-
+/**
+ * This is a super class defining
+ * attributes for child classes
+ * to use
+ */
 public class EducationalLocation{
     private String name;
     private String location;
@@ -11,8 +14,17 @@ public class EducationalLocation{
     private int availableSeats;
     private Resume resume;
 
-    public EducationalLocation(){}
 
+    /**
+     * Common attributes in the constructor which
+     * the child classes will be using
+     * @param name of the Educational Place
+     * @param location of the Educational Place
+     * @param major of the Educational Place
+     * @param fees of the Educational Place
+     * @param availableSeats at the Educational Place
+     * @param resume requirements of the Educational Place
+     */
     public EducationalLocation(String name, String location, Major major, double fees, int availableSeats, Resume resume) {
         this.name = name;
         this.location = location;
@@ -22,6 +34,12 @@ public class EducationalLocation{
         this.resume = resume;
     }
 
+    public EducationalLocation(){}
+
+    /**
+     * Getter and Setters to access the values
+     * of the attributes
+     */
 
     public String getName() {
         return name;
