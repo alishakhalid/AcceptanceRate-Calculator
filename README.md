@@ -13,3 +13,4 @@ To provide an overview of our project we created a class diagram, which visualiz
 [Class Diagram](https://github.com/alishakhalid/AcceptanceRate-Calculator)
 ### Expansion possibilites
 * create a GUI
+* save resume in database
