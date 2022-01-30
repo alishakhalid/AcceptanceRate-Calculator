@@ -27,20 +27,24 @@ public class Job {
     }
 
     public void getITJobs() {
+        int i = 0;
         initializeJobs();
         String jobOrientation = "IT";
-        for (int i = 0; i < jobs.size(); i++) {
             if (jobs.get(i).getJobOrientation().equals(jobOrientation)) {
+                for (int j = 0; j < jobs.size(); j++) {
+                System.out.print("[" + i + "] ");
                 System.out.println("Workplace: "+ jobs.get(i).workPlace + " as " + jobs.get(i).jobName + " ");
             }
         }
     }
 
     public void getClerkJobs() {
+        int i =0;
         initializeJobs();
         String jobOrientation = "Office";
-        for (int i = 0; i < jobs.size(); i++) {
-            if (jobs.get(i).getJobOrientation().equals(jobOrientation)) {
+        if (jobs.get(i).getJobOrientation().equals(jobOrientation)) {
+            for (int j = 0; j < jobs.size(); j++) {
+                System.out.print("[" + i + "] ");
                 System.out.println("Workplace: "+ jobs.get(i).workPlace + " as " + jobs.get(i).jobName + " ");
             }
         }
@@ -50,31 +54,4 @@ public class Job {
         return jobOrientation;
     }
 
-    public void setJobOrientation(String jobOrientation) {
-        this.jobOrientation = jobOrientation;
-    }
-
-    public String getWorkPlace() {
-        return workPlace;
-    }
-
-    public void setWorkPlace(String workPlace) {
-        this.workPlace = workPlace;
-    }
-
-    public Resume getResume() {
-        return resume;
-    }
-
-    public void setResume(Resume resume) {
-        this.resume = resume;
-    }
-
-    public String getJobName() {
-        return jobName;
-    }
-
-    public void setJobName(String jobName) {
-        this.jobName = jobName;
-    }
 }
