@@ -1,8 +1,12 @@
 package com.company.tbz;
 
-
 import java.util.ArrayList;
 
+/**
+ * This class is the child class
+ * of the parent class EducationalLocation with
+ * the additional field jobOrientation
+ */
 public class TechnicalCollege extends EducationalLocation{
 
     private String jobOrientation;
@@ -17,6 +21,11 @@ public class TechnicalCollege extends EducationalLocation{
 
     public TechnicalCollege(){}
 
+    /**
+     * This method adds hardcoded data into the technical
+     * college arraylist and returns it
+     * @return
+     */
     public ArrayList<TechnicalCollege> initializeTechnicalColleges(){
         resume.initializeResumes();
         TechnicalCollege itc = new TechnicalCollege("TBZ", "Zuerich", new Major("Informatik", 4, 1), 15000.75, 5, resume.getResumes().get(9), "IT");

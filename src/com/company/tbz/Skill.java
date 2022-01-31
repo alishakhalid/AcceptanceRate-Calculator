@@ -2,21 +2,34 @@ package com.company.tbz;
 
 import java.util.ArrayList;
 
-public class Skill {
+
+/**
+ * This is a super class defining
+ * attributes for child classes
+ * to use
+ */
+public  class Skill {
     private String name;
     private double experienceInYears;
     private String usageOfSkill;
     private int skillLevel;
     private  ArrayList<Skill> skills = new ArrayList<>();
-
-    public Skill() {}
-
+    /**
+     * Common attributes in the constructor which
+     * the child classes will be using
+     * @param name of the skill
+     * @param experienceInYears of the skill
+     * @param usageOfSkill where the skill is used
+     * @param skillLevel from a scale of 1 to 10, how good are you
+     */
     public Skill(String name, double experienceInYears, String usageOfSkill, int skillLevel) {
         this.name = name;
         this.experienceInYears = experienceInYears;
         this.usageOfSkill = usageOfSkill;
         this.skillLevel = skillLevel;
     }
+
+    public Skill() {}
 
     public ArrayList<Skill> initializeSkills() {
         Skill programmingJava = new ITSkill("Programming with Java",1.5, "work", 7, "java");

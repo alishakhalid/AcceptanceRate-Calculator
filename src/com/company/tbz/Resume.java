@@ -2,6 +2,12 @@ package com.company.tbz;
 
 import java.util.ArrayList;
 
+/**
+ * This is the parent class Resume
+ * which lets a user/job/school
+ * create a resume with their
+ * fitting candidates/applicants
+ */
 public class Resume {
     private String userSkill;
     private String name;
@@ -16,6 +22,16 @@ public class Resume {
 
     public Resume(){ }
 
+    /**
+     * This class has all the attributes which are
+     * used in both jobs and schools
+     * @param name
+     * @param averageGrade
+     * @param skill
+     * @param strength
+     * @param weakness
+     * @param hasBMSDiploma
+     */
     public Resume(String name, double averageGrade, Skill skill, String strength ,String weakness,  boolean hasBMSDiploma) {
         this.name = name;
         this.averageGrade = averageGrade;
@@ -25,6 +41,10 @@ public class Resume {
         this.hasBMSDiploma = hasBMSDiploma;
     }
 
+    /**
+     * This method creates hardcoded data
+     * for the field strength
+     */
     public void addStrengths(){
         strengths.add("caring");
         strengths.add("dedicated");
@@ -32,7 +52,10 @@ public class Resume {
         strengths.add("motivated");
         strengths.add("self-controlled");
     }
-
+    /**
+     * This method creates hardcoded data
+     * for the field weakness
+     */
     public void addWeaknesses(){
         weaknesses.add("detail-oriented");
         weaknesses.add("overconfident");
@@ -41,6 +64,12 @@ public class Resume {
         weaknesses.add("disorganized");
     }
 
+    /**
+     * This method creates hardcoded
+     * resume which are all added in
+     * a arraylist of resumes
+     * @return
+     */
     public ArrayList<Resume> initializeResumes(){
         skill.initializeSkills();
         Resume noserIT = new JobResume( 40,"noserIT",5.5, skill.getSkills().get(0), "dedicated", "detail-oriented", false);
@@ -126,5 +155,13 @@ public class Resume {
 
     public ArrayList<Resume> getResumes() {
         return resumes;
+    }
+
+    public Skill getSkill() {
+        return skill;
+    }
+
+    public void setSkill(Skill skill) {
+        this.skill = skill;
     }
 }

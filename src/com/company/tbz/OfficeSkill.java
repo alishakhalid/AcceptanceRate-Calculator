@@ -1,8 +1,12 @@
 package com.company.tbz;
 
 
-import java.util.ArrayList;
-
+/**
+ * This class is the child class
+ * of the parent class Skill with
+ * the additional attribute
+ * officeSkill
+ */
 public class OfficeSkill extends Skill{
 
     private String officeSkill;

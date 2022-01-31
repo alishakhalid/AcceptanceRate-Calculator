@@ -1,6 +1,5 @@
 package com.company.tbz;
 
-
 /**
  * This is a super class defining
  * attributes for child classes
@@ -46,32 +45,15 @@ public class EducationalLocation{
     public String getLocation() {
         return location;
     }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
     public Major getMajor() {
         return major;
-    }
-
-    public void setMajor(Major major) {
-        this.major = major;
     }
 
     public double getFees() {
         return fees;
     }
 
-    public void setFees(double fees) {
-        this.fees = fees;
-    }
-
     public int getAvailableSeats() {
         return availableSeats;
-    }
-
-    public void setAvailableSeats(int availableSeats) {
-        this.availableSeats = availableSeats;
     }
 }

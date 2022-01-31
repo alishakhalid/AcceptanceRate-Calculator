@@ -33,6 +33,27 @@ public class Validator {
 
     /**
      * This method checks for an input
+     * which can only be a boolean
+     * if not a error occurs and the user
+     * is requested to try again
+     *
+     * @return input
+     */
+    public Boolean validateBoolean(){
+        Scanner scan = new Scanner(System.in);
+        String booleanPattern = " (true|false)";
+        String input = scan.nextLine();
+        boolean match = Boolean.parseBoolean(booleanPattern.trim());;
+        while (!match) {
+            System.out.println("\u001B[31mNot valid, try again: \u001B[0m");
+            input = scan.nextLine();
+            match = true;
+        }
+        return Boolean.parseBoolean(input);
+    }
+
+    /**
+     * This method checks for an input
      * which can only be a double (decimal number)
      * if not a error occurs and the user
      * is requested to try again

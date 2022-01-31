@@ -1,8 +1,13 @@
 package com.company.tbz;
 
-
-import java.util.ArrayList;
-
+/**
+ * This is the child class of
+ * the parent class Skill which has
+ * the additional attribute
+ * programmingLanguages for all the
+ * resumes where the specialization field
+ * is IT
+ */
 public class ITSkill extends Skill {
 
     private String programmingLanguages;

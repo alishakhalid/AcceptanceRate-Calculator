@@ -1,9 +1,14 @@
 package com.company.tbz;
 
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-
+/**
+ * This class is the In and Output class
+ * which is where we use the sout and scanner
+ * functions
+ */
 public class IO {
     private Validator validate = new Validator();
     private College college = new College();
@@ -20,7 +25,8 @@ public class IO {
      * The method run is called in the main class
      * to run the program
      */
-    public void run() {
+    public void run() throws IOException {
+        createFileForEachResume();
         mainMenu();
     }
 
@@ -152,10 +158,9 @@ public class IO {
         Scanner input = new Scanner(System.in);
         int answer = 0;
 
-        while (answer!= 2) {
             System.out.println("Your choice is to work.");
             System.out.println("Please choose in which field you want to work \n" +
-                    "[0] IT | [1] Office | [2] Move back");
+                    "[0] IT | [1] Office |");
             System.out.print("> ");
             try {
                 answer = Integer.parseInt(input.nextLine());
@@ -168,18 +173,24 @@ public class IO {
                 case 0 -> {
                     job.getITJobs();
                     System.out.println("For which IT-job do want to apply for? (choose with index)");
+                    System.out.print("> ");
+                    answer = Integer.parseInt(input.nextLine());
+                    questionForJobResume();
+                    job.getJobs().get(answer);
+
                 }
                 case 1 -> {
                     job.getClerkJobs();
                     System.out.println("For which Clerk-job do want to apply for? (choose with index)");
+                    System.out.print("> ");
+                    answer = Integer.parseInt(input.nextLine());
+                    questionForJobResume();
                 }
                 default -> System.out.println("\u001B[31mNot valid answer\u001B[0m");
             }
-            System.out.print("> ");
-            answer = Integer.parseInt(input.nextLine());
-            questionForJobResume();
+
             System.exit(0);
-        }
+
     }
 
     /**
@@ -212,14 +223,19 @@ public class IO {
         System.out.print("Do you have a BMS diploma? \n" +
                 "true | false \n");
         System.out.print("> ");
-        boolean hasBMS = input.nextBoolean();
+        boolean hasBMS = validate.validateBoolean();
         userEducationResume.createEducationResumeForUserToFillOut(age,
                 gradeAverage, userSkill.toLowerCase(), userStrength.toLowerCase(), userWeakness.toLowerCase(), hasBMS);
         printUserEducationResume();
-        System.out.println("Calculating Acceptance Rate...");
+        calcualteAcceptanceRate(userEducationResume);
         System.out.println("Here you go");
     }
-
+    public double calcualteAcceptanceRate(Resume resume){
+        System.out.println("Calculating Acceptance Rate...");
+        double acceptanceRate = 0.0;
+        int counter = 0;
+        return acceptanceRate;
+    }
     /**
      * This method gets called in applicationToStudy.
      * It asks the user a few question to fill
@@ -227,6 +243,7 @@ public class IO {
      * later on with it's educational location
      */
     public void questionForJobResume() {
+
         Scanner input = new Scanner(System.in);
         System.out.println("How many kilometres far do you live from this job? ");
         System.out.print("> ");
@@ -249,7 +266,7 @@ public class IO {
         System.out.print("Do you have a BMS diploma? \n" +
                 "true | false \n");
         System.out.print("> ");
-        boolean hasBMS = input.nextBoolean();
+        boolean hasBMS = validate.validateBoolean();
         userJobResume.createJobResumeForUserToFillOut(domicileDistance,
                 gradeAverage, userSkill.toLowerCase(), userStrength.toLowerCase(), userWeakness.toLowerCase(), hasBMS);
         printUserJobResume();
@@ -288,7 +305,20 @@ public class IO {
             System.out.println("Your best strength: " + userJobResume.getUserResumeList().get(i).getStrength());
             System.out.println("Your biggest weakness: " + userJobResume.getUserResumeList().get(i).getWeakness());
             System.out.println("Has BMS Diploma: " + userJobResume.getUserResumeList().get(i).isHasBMSDiploma());
+        }
+    }
 
+    /**
+     * In this method resume is filled
+     * with the values of the arraylist
+     * which are saved in a file with their
+     * name
+     */
+    public void createFileForEachResume() throws IOException {
+        Resume resume = new Resume();
+        resume.initializeResumes();
+        for (int i = 0; i < resume.getResumes().size(); i++) {
+            FileHandler.addResumeToFile(resume.getResumes().get(i));
         }
     }
 
@@ -455,12 +485,8 @@ public class IO {
                 case 1 -> job.getITJobs();
                 case 2 -> job.getClerkJobs();
                 case 3 -> System.out.println("Go back ");
-                default -> {
-                    System.out.println("\u001B[31mInvalid answer\u001B[0m");
-                }
+                default -> System.out.println("\u001B[31mInvalid answer\u001B[0m");
             }
         }
     }
-
-
 }

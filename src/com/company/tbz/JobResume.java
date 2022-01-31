@@ -2,6 +2,11 @@ package com.company.tbz;
 
 import java.util.ArrayList;
 
+/**
+ * This method is the child class of
+ * the class Resume which contains the the
+ * additional attribute maxDomicileDistance
+ */
 public class JobResume extends Resume{
     private int maxDomicileDistance;
     private ArrayList<JobResume> userResumeList = new ArrayList<>();
@@ -12,6 +17,17 @@ public class JobResume extends Resume{
     }
     public JobResume(){}
 
+    /**
+     * This method lets us create hardcoded resumes which
+     * are meant for the job path. This method calls upon
+     * the method addUserResumeToList
+     * @param domicileDistance
+     * @param averageGrade
+     * @param userInputSkill
+     * @param userStrength
+     * @param userWeakness
+     * @param hasBMS
+     */
     public void createJobResumeForUserToFillOut(int domicileDistance, double averageGrade, String userInputSkill, String userStrength, String userWeakness, boolean hasBMS){
         JobResume userJobResume = new JobResume();
         userJobResume.setMaxDomicileDistance(domicileDistance);
@@ -23,6 +39,11 @@ public class JobResume extends Resume{
         addUserResumeToList(userJobResume);
     }
 
+    /**
+     * This method adds the job resumes to the arraylist
+     * of resumes.
+     * @param userEducationResume
+     */
     public void addUserResumeToList(JobResume userEducationResume){
         userResumeList.add(userEducationResume);
     }

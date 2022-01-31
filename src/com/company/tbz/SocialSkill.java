@@ -1,8 +1,14 @@
 package com.company.tbz;
 
-
-import java.util.ArrayList;
-
+/**
+ * This is the child class
+ * of the parent class Skill
+ * which is not specified
+ * for a job/major but is general
+ * and can be used as a skill
+ * for anyone with none experience
+ * in the other skill child classes
+ */
 public class SocialSkill extends Skill{
     private String name;
     private boolean isExtroverted;
@@ -18,37 +24,6 @@ public class SocialSkill extends Skill{
         this.isConsidered = isConsidered;
     }
 
-    public boolean isExtroverted() {
-        return isExtroverted;
-    }
-
-    public void setExtroverted(boolean extroverted) {
-        isExtroverted = extroverted;
-    }
-
-    public boolean isAbleToHandleCriticism() {
-        return isAbleToHandleCriticism;
-    }
-
-    public void setAbleToHandleCriticism(boolean ableToHandleCriticism) {
-        isAbleToHandleCriticism = ableToHandleCriticism;
-    }
-
-    public boolean isTeamOriented() {
-        return isTeamOriented;
-    }
-
-    public void setTeamOriented(boolean teamOriented) {
-        isTeamOriented = teamOriented;
-    }
-
-    public boolean isConsidered() {
-        return isConsidered;
-    }
-
-    public void setConsidered(boolean considered) {
-        isConsidered = considered;
-    }
 
     @Override
     public String getName() {
