@@ -495,27 +495,4 @@ public class IO {
         }
     }
 
-    /**
-     * wrote method for a prettier output
-     * the box will match it' size according
-     * to the word
-     * @param word
-     */
-    public static void boxOutput(String... word){
-        for(int j = 0; j < word.length; j++){
-            int size = word[j].length();
-            System.out.print("\u250C");
-            for(int i = -4; i < size; i++){
-                System.out.print("\u2574");
-            }
-            System.out.println("\u2513");
-            System.out.println("\u2551  " + word[j] + "  \u2551");
-            System.out.print("\u2515");
-            for(int i = -4; i < size; i++){
-                System.out.print("\u2574");
-            }
-            System.out.println("\u251B");
-        }
-
-    }
 }

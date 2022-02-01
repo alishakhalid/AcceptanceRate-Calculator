@@ -46,6 +46,8 @@ public class EducationResume extends Resume{
     public Double compareEducationalResume(HashMap<String, String> templateData, HashMap<String, String> userData){
         double counter = 0;
         for(String key : templateData.keySet()){
+            String template =templateData.get(key);
+            String user = userData.get(key);
             if (templateData.get(key).equals(userData.get(key))){
                 counter++;
             }

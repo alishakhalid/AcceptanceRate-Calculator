@@ -127,7 +127,7 @@ public class FileHandler {
 
     public HashMap<String, String> saveResumeAsHash(String data){
         HashMap<String, String> savedData = new HashMap<>();
-        String[] dataArray = data.split(",");
+        String[] dataArray = data.split(", ");
         for (String dataEntry: dataArray) {
                 String[] dataElement = dataEntry.split(":");
             if (!dataElement[0].equals("Name")) {
