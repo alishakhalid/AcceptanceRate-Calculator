@@ -2,6 +2,8 @@ package com.company.tbz;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+
 public class FileHandler {
     private static String line;
 
@@ -24,7 +26,7 @@ public class FileHandler {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
             line = "Name: " + resume.getName().concat(", ")
                     .concat(String.valueOf("Average Grade: "+resume.getAverageGrade()))
-                    .concat(", ").concat("Required Skill: "+resume.getSkill().getName())
+                    .concat(", ").concat("Skill: "+resume.getSkill().getName())
                     .concat(", ").concat("Strength: "+resume.getStrength()).concat(", ")
                     .concat("Weakness: "+resume.getWeakness()).concat(", ")
                     .concat(String.valueOf("Has BMS Diploma: "+resume.isHasBMSDiploma()));
@@ -111,67 +113,36 @@ public class FileHandler {
         doesExist = file.exists();
         return doesExist;
     }
-    /**
-     * This method lets us read from the file we hardcoded
-     * @param resume
-     * @throws IOException
-     */
-    public static void readHardCodedResume(Resume resume) throws IOException {
-        BufferedReader bufReader = new BufferedReader(new FileReader(resume.getName().concat(".txt")));
-        ArrayList<String> listOfLines = new ArrayList<>();
-        String line = bufReader.readLine();
-        while (line != null) {
-            listOfLines.add(line);
-            line = bufReader.readLine();
+
+    public String readResume(String resumeName) throws IOException {
+        File file = new File(resumeName + ".txt");
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        String st;
+        String data = "";
+        while ((st = br.readLine()) != null) {
+            data = st;
         }
-        bufReader.close();
-        for (int i = 0; i < listOfLines.size(); i++){
-            System.out.println(listOfLines.get(i));
-        }
+        return data;
     }
 
-    /**
-     * This method prints out the user(resumes) which were
-     * created through the program
-     * @param resume
-     * @throws IOException
-     */
-    public static void readUserResume(Resume resume) throws IOException {
+    public HashMap<String, String> saveResumeAsHash(String data){
+        HashMap<String, String> savedData = new HashMap<>();
+        String[] dataArray = data.split(",");
+        for (String dataEntry: dataArray){
+            String[] dataElement = dataEntry.split(":");
+            savedData.put(dataElement[0],dataElement[1]);
+        }
+        return savedData;
+    }
+
+    public String readUserResume() throws IOException {
         File file = new File("UserResume.txt");
         BufferedReader br = new BufferedReader(new FileReader(file));
         String st;
-        while ((st = br.readLine()) != null)
-            System.out.println(st);
-    }
-
-    /**
-     * This method compares two files
-     * and tells us how much is equal and
-     * how many percent are not
-     * @param resume1
-     * @param resume2
-     * @return
-     * @throws IOException
-     */
-    public static long filesCompareByLine(Resume resume1, Resume resume2) throws IOException {
-        resume1.initializeResumes();
-        try (BufferedReader bf1 = new BufferedReader(new FileReader(resume1.getName().concat(".txt")));
-             BufferedReader bf2 = new BufferedReader(new FileReader("UserResume.txt"))) {
-            long lineNumber = 1;
-            String line1 = "", line2 = "";
-            while ((line1 = bf1.readLine()) != null) {
-                line2 = bf2.readLine();
-                if (line2 == null || !line1.equals(line2)) {
-                    return lineNumber;
-                }
-                lineNumber++;
-            }
-            if (bf2.readLine() == null) {
-                return -1;
-            }
-            else {
-                return lineNumber;
-            }
+        String data = "";
+        while ((st = br.readLine()) != null) {
+            data = st;
         }
+        return data;
     }
 }

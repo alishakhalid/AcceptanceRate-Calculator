@@ -59,4 +59,5 @@ public class JobResume extends Resume{
     public void setMaxDomicileDistance(int maxDomicileDistance) {
         this.maxDomicileDistance = maxDomicileDistance;
     }
+
 }

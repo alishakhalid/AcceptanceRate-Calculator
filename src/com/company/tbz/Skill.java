@@ -35,7 +35,7 @@ public  class Skill {
         Skill programmingJava = new ITSkill("Programming with Java",1.5, "work", 7, "java");
         Skill programmingPython = new ITSkill("Programming with Python",3, "hobby", 10, "python");
         Skill codingSQL = new ITSkill("SQL",1.5, "work", 7, "java");
-        Skill documentingWord = new OfficeSkill("Use word",3.5, "work", 8, "word");
+        Skill documentingWord = new OfficeSkill("Able to use word",3.5, "work", 8, "word");
         Skill creatingExcel = new OfficeSkill("Use Excel",3.5, "work", 6, "excel");
         Skill loneWorker = new SocialSkill("Lone Worker",true, false, false, true);
         Skill teamWorker = new SocialSkill("Team worker",true, false, true, true);

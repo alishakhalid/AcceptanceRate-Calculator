@@ -1,20 +1,21 @@
 package com.company.tbz;
 
-import java.io.File;
+import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Set;
 
+/**
+ * This is the child class of the
+ * parent class Resume which uses the
+ * additional attribute minAge
+ */
 
 public class EducationResume extends Resume{
 
-    /**
-     * This is the child class of the
-     * parent class Resume which uses the
-     * additional attribute minAge
-     */
-
     private int minAge;
     private ArrayList<EducationResume> userResumeList = new ArrayList<>();
-
 
     /**
      * This is the empty constructor used for
@@ -36,20 +37,67 @@ public class EducationResume extends Resume{
         this.minAge = minAge;
     }
 
+
+    public HashMap<String, String> userResumeAsHash(String data) throws IOException {
+        HashMap<String, String> savedData = new HashMap<>();
+        String[] dataArray = data.split(",");
+        for (String dataEntry: dataArray){
+            String[] dataElement = dataEntry.split(":");
+            savedData.put(dataElement[0],dataElement[1]);
+        }
+        return savedData;
+    }
+
+    /**
+     * This method compares the two HashMaps of the given
+     * resumes and also calls the method calculateAcceptanceRate
+     * @param templateData
+     * @param userData
+     * @return
+     */
+    public Double compareEducationalResume(HashMap<String, String> templateData, HashMap<String, String> userData){
+        double counter = 0;
+        Set<String> keySet = templateData.keySet();
+        for(String keyTempSet : keySet){
+            if (templateData.get(keyTempSet).equals(userData.get(keyTempSet)) && !keyTempSet.equals("Name")){
+                counter++;
+            }
+        }
+        return calculateAcceptanceRate(counter);
+    }
+
+    /**
+     * This method counts all the points of the resumes and
+     * returns the given rate
+     * @param counter
+     * @return
+     */
+    private Double calculateAcceptanceRate(Double counter){
+        return (counter * 100.0) / 5.00;
+    }
+    /**
+     * This method adds the hardcoded objects to
+     * an arraylist of the same class
+     * @param userEducationResume
+     */
+    public void addUserResumeToList(EducationResume userEducationResume) {
+        userResumeList.add(userEducationResume);
+    }
+
     /**
      * This method lets us create resumes for the
      * path of Education and call on the method
      * addUserResumeToList
-     * @param age
      * @param averageGrade
      * @param userInputSkill
      * @param userStrength
      * @param userWeakness
      * @param hasBMS
      */
-    public void createEducationResumeForUserToFillOut(int age, double averageGrade, String userInputSkill, String userStrength, String userWeakness, boolean hasBMS){
+    public void createEducationResumeForUserToFillOut(int minAge, String name,  double averageGrade, String userInputSkill, String userStrength, String userWeakness, boolean hasBMS){
         EducationResume userEducationResume = new EducationResume();
-        userEducationResume.setMinAge(age);
+        userEducationResume.setName(name);
+        userEducationResume.setMinAge(minAge);
         userEducationResume.setAverageGrade(averageGrade);
         userEducationResume.setUserSkill(userInputSkill);
         userEducationResume.setStrength(userStrength);
@@ -57,15 +105,6 @@ public class EducationResume extends Resume{
         userEducationResume.setHasBMSDiploma(hasBMS);
         addUserResumeToList(userEducationResume);
         FileHandler.addEducationResumeToFile(userEducationResume);
-    }
-
-    /**
-     * This method adds the hardcoded objects to
-     * an arraylist of the same class
-     * @param userEducationResume
-     */
-    public void addUserResumeToList(EducationResume userEducationResume){
-        userResumeList.add(userEducationResume);
     }
 
     public int getMinAge() {

@@ -1,5 +1,8 @@
-package com.company.tbz;
+package com.company.tbz.test;
 
+import com.company.tbz.College;
+import com.company.tbz.Major;
+import com.company.tbz.Resume;
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

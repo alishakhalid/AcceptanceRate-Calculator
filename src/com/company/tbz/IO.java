@@ -1,6 +1,7 @@
 package com.company.tbz;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -20,6 +21,7 @@ public class IO {
     private EducationResume userEducationResume = new EducationResume();
     private JobResume userJobResume = new JobResume();
     private Job job = new Job();
+    private FileHandler fileHandler = new FileHandler();
 
     /**
      * The method run is called in the main class
@@ -36,7 +38,7 @@ public class IO {
      * that gives the user the possibilities about
      * the usage
      */
-    public void mainMenu() {
+    public void mainMenu() throws IOException {
         Scanner scanner = new Scanner(System.in);
         int answer = 0;
         while (answer != 4) {
@@ -117,9 +119,10 @@ public class IO {
      * study. After this another method is called
      * asking questions to fill out resume
      */
-    public void applicationToStudy() {
+    public void applicationToStudy() throws IOException {
         Scanner input = new Scanner(System.in);
         int answer = 0;
+        String name = " ";
         System.out.println("Your choice is to go study.");
         System.out.println("Please choose in the following if you'd like to go in a\n" +
                 "[0] College | [1] Technical College | [2] University");
@@ -129,20 +132,23 @@ public class IO {
             case 0 -> {
                 printCollege();
                 System.out.println("In which College would you like to study (choose with index)");
+                name = college.getCollegeArrayList().get(answer).getName();
             }
             case 1 -> {
                 printTechCollege();
                 System.out.println("In which Technical College would you like to study (choose with index)");
+                name = technicalCollege.getTechnicalCollegeArrayList().get(answer).getName();
             }
             case 2 -> {
                 printUniversities();
                 System.out.println("In which University would you like to study (choose with index)");
+                name = university.getUniversities().get(answer).getName();
             }
             default -> System.out.println("\u001B[31mNot valid answer\u001B[0m");
         }
         System.out.print("> ");
         answer = Integer.parseInt(input.nextLine());
-        questionForEducationResume();
+        questionForEducationResume(name);
         System.exit(0);
     }
 
@@ -199,43 +205,41 @@ public class IO {
      * out his/her resume which we will be comparing
      * later on with it's educational location
      */
-    public void questionForEducationResume() {
+    public void questionForEducationResume(String name) throws IOException {
         Scanner input = new Scanner(System.in);
-
         System.out.println("How old are you? ");
         System.out.print("> ");
-        int age = input.nextInt();
+        int age = Integer.parseInt(input.nextLine());
         System.out.println("What is your grade point average of your Report card? ");
         System.out.print("> ");
         double gradeAverage = validate.validateGradeInput();
         System.out.print("What is your Skill? \n");
         printSkill();
         System.out.print("> ");
-        String userSkill = validate.validateStringInput();
+        String userSkill = validate.validateSkills();
         System.out.print("What is your biggest strength (choose 1) \n");
         printStrengths();
         System.out.print("> ");
-        String userStrength = validate.validateStringInput();
+        String userStrength = validate.validateStrengths();
         System.out.print("What is your biggest weakness (choose 1) \n");
         printWeaknesses();
         System.out.print("> ");
-        String userWeakness = validate.validateStringInput();
+        String userWeakness = validate.validateWeakness();
         System.out.print("Do you have a BMS diploma? \n" +
                 "true | false \n");
         System.out.print("> ");
         boolean hasBMS = validate.validateBoolean();
-        userEducationResume.createEducationResumeForUserToFillOut(age,
-                gradeAverage, userSkill.toLowerCase(), userStrength.toLowerCase(), userWeakness.toLowerCase(), hasBMS);
+        userEducationResume.createEducationResumeForUserToFillOut(age,name,
+                gradeAverage, userSkill, userStrength, userWeakness, hasBMS);
         printUserEducationResume();
-        calcualteAcceptanceRate(userEducationResume);
-        System.out.println("Here you go");
-    }
-    public double calcualteAcceptanceRate(Resume resume){
+        HashMap<String, String> templateResume = fileHandler.saveResumeAsHash(fileHandler.readResume(name));
+        HashMap<String, String> userResume = fileHandler.saveResumeAsHash(fileHandler.readUserResume());
         System.out.println("Calculating Acceptance Rate...");
-        double acceptanceRate = 0.0;
-        int counter = 0;
-        return acceptanceRate;
+        System.out.println("Here you go");
+        System.out.println("Your acceptance rate is: "+userEducationResume.compareEducationalResume(templateResume
+                , userResume) + "%");
     }
+
     /**
      * This method gets called in applicationToStudy.
      * It asks the user a few question to fill
@@ -243,7 +247,6 @@ public class IO {
      * later on with it's educational location
      */
     public void questionForJobResume() {
-
         Scanner input = new Scanner(System.in);
         System.out.println("How many kilometres far do you live from this job? ");
         System.out.print("> ");
@@ -254,15 +257,15 @@ public class IO {
         System.out.print("What is your Skill? \n");
         printSkill();
         System.out.print("> ");
-        String userSkill = validate.validateStringInput();
+        String userSkill = validate.validateSkills();
         System.out.print("What is your biggest strength (choose 1) \n");
         printStrengths();
         System.out.print("> ");
-        String userStrength = validate.validateStringInput();
+        String userStrength = validate.validateStrengths();
         System.out.print("What is your biggest weakness (choose 1) \n");
         printWeaknesses();
         System.out.print("> ");
-        String userWeakness = validate.validateStringInput();
+        String userWeakness = validate.validateWeakness();
         System.out.print("Do you have a BMS diploma? \n" +
                 "true | false \n");
         System.out.print("> ");
@@ -282,6 +285,7 @@ public class IO {
     public void printUserEducationResume() {
         System.out.println("Your answers: ");
         for (int i = 0; i < userEducationResume.getUserResumeList().size(); i++) {
+            System.out.println("Workplace: " + userEducationResume.getUserResumeList().get(i).getName().toLowerCase());
             System.out.println("Age: " + userEducationResume.getUserResumeList().get(i).getMinAge());
             System.out.println("Average Grade: " + userEducationResume.getUserResumeList().get(i).getAverageGrade());
             System.out.println("Your skill: " + userEducationResume.getUserResumeList().get(i).getUserSkill());
