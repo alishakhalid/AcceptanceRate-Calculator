@@ -1,7 +1,6 @@
 package com.company.tbz;
 
 import java.io.IOException;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
@@ -37,17 +36,6 @@ public class EducationResume extends Resume{
         this.minAge = minAge;
     }
 
-
-    public HashMap<String, String> userResumeAsHash(String data) throws IOException {
-        HashMap<String, String> savedData = new HashMap<>();
-        String[] dataArray = data.split(",");
-        for (String dataEntry: dataArray){
-            String[] dataElement = dataEntry.split(":");
-            savedData.put(dataElement[0],dataElement[1]);
-        }
-        return savedData;
-    }
-
     /**
      * This method compares the two HashMaps of the given
      * resumes and also calls the method calculateAcceptanceRate
@@ -57,9 +45,8 @@ public class EducationResume extends Resume{
      */
     public Double compareEducationalResume(HashMap<String, String> templateData, HashMap<String, String> userData){
         double counter = 0;
-        Set<String> keySet = templateData.keySet();
-        for(String keyTempSet : keySet){
-            if (templateData.get(keyTempSet).equals(userData.get(keyTempSet)) && !keyTempSet.equals("Name")){
+        for(String key : templateData.keySet()){
+            if (templateData.get(key).equals(userData.get(key))){
                 counter++;
             }
         }
@@ -72,7 +59,7 @@ public class EducationResume extends Resume{
      * @param counter
      * @return
      */
-    private Double calculateAcceptanceRate(Double counter){
+    private Double calculateAcceptanceRate(double counter){
         return (counter * 100.0) / 5.00;
     }
     /**

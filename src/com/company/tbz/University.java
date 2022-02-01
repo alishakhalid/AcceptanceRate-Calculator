@@ -17,7 +17,7 @@ public class University extends EducationalLocation{
      * additional attributed for the university
      */
     private String insurance;
-    private ArrayList<University> universities = new ArrayList<>();
+    private ArrayList<University> universityArrayList = new ArrayList<>();
     private Resume resume = new Resume();
 
     /**
@@ -36,9 +36,7 @@ public class University extends EducationalLocation{
         this.insurance = insurance;
     }
 
-    public University(){
-
-    }
+    public University(){ }
 
     /**
      * In this method we created two different
@@ -55,9 +53,9 @@ public class University extends EducationalLocation{
         resume.initializeResumes();
         University eth = new University("ETH", "Zuerich", new Major("Data Science", 4, 5), 15000.75, 5, resume.getResumes().get(7), "SWICA");
         University uzh = new University("UZH", "Zuerich", new Major("Accounting", 2, 4), 18500, 10, resume.getResumes().get(8), "HELSANA");
-        universities.add(eth);
-        universities.add(uzh);
-        return universities;
+        universityArrayList.add(eth);
+        universityArrayList.add(uzh);
+        return universityArrayList;
     }
 
 
@@ -72,7 +70,7 @@ public class University extends EducationalLocation{
     }
 
     public ArrayList<University> getUniversities() {
-        return universities;
+        return universityArrayList;
     }
 
     public Resume getResume() {

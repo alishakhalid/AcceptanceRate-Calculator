@@ -132,22 +132,23 @@ public class IO {
             case 0 -> {
                 printCollege();
                 System.out.println("In which College would you like to study (choose with index)");
+                answer = Integer.parseInt(input.nextLine());
                 name = college.getCollegeArrayList().get(answer).getName();
             }
             case 1 -> {
                 printTechCollege();
                 System.out.println("In which Technical College would you like to study (choose with index)");
+                answer = Integer.parseInt(input.nextLine());
                 name = technicalCollege.getTechnicalCollegeArrayList().get(answer).getName();
             }
             case 2 -> {
                 printUniversities();
                 System.out.println("In which University would you like to study (choose with index)");
+                answer = Integer.parseInt(input.nextLine());
                 name = university.getUniversities().get(answer).getName();
             }
             default -> System.out.println("\u001B[31mNot valid answer\u001B[0m");
         }
-        System.out.print("> ");
-        answer = Integer.parseInt(input.nextLine());
         questionForEducationResume(name);
         System.exit(0);
     }
@@ -492,5 +493,29 @@ public class IO {
                 default -> System.out.println("\u001B[31mInvalid answer\u001B[0m");
             }
         }
+    }
+
+    /**
+     * wrote method for a prettier output
+     * the box will match it' size according
+     * to the word
+     * @param word
+     */
+    public static void boxOutput(String... word){
+        for(int j = 0; j < word.length; j++){
+            int size = word[j].length();
+            System.out.print("\u250C");
+            for(int i = -4; i < size; i++){
+                System.out.print("\u2574");
+            }
+            System.out.println("\u2513");
+            System.out.println("\u2551  " + word[j] + "  \u2551");
+            System.out.print("\u2515");
+            for(int i = -4; i < size; i++){
+                System.out.print("\u2574");
+            }
+            System.out.println("\u251B");
+        }
+
     }
 }

@@ -28,8 +28,8 @@ public class TechnicalCollege extends EducationalLocation{
      */
     public ArrayList<TechnicalCollege> initializeTechnicalColleges(){
         resume.initializeResumes();
-        TechnicalCollege itc = new TechnicalCollege("TBZ", "Zuerich", new Major("Informatik", 4, 1), 15000.75, 5, resume.getResumes().get(9), "IT");
-        TechnicalCollege atc = new TechnicalCollege("KV", "Zuerich", new Major("Economics", 3, 2), 18500, 10, resume.getResumes().get(10), "Clerk");
+        TechnicalCollege itc = new TechnicalCollege("itc", "Zuerich", new Major("Informatik", 4, 1), 15000.75, 5, resume.getResumes().get(9), "IT");
+        TechnicalCollege atc = new TechnicalCollege("atc", "Zuerich", new Major("Economics", 3, 2), 18500, 10, resume.getResumes().get(10), "Clerk");
         technicalCollegeArrayList.add(itc);
         technicalCollegeArrayList.add(atc);
         return technicalCollegeArrayList;
